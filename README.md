@@ -57,7 +57,13 @@
 ## �� Tecnologias
 <div>
   <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+  <img src="https://img.shields.io/badge/React.js%20-%20green?style=for-the-badge&logo=React.js">
+  <img src="https://img.shields.io/badge/HTML5%20-%20blue?style=for-the-badge&logo=HTML5">
+  <img src="https://img.shields.io/badge/CSS%20-%20orange?style=for-the-badge&logo=CSS">
   <img src="https://img.shields.io/badge/Typescritpt%20-%20blue?style=for-the-badge&logo=Typescript">
+  <img src="https://img.shields.io/badge/Redux%20-%20gray?style=for-the-badge&logo=Redux">
   <img src="https://img.shields.io/badge/GraphQL-%20orange?style=for-the-badge&logo=GraphQL">
+  <img <img alt="Static Badge" src="https://img.shields.io/badge/Node.js%20-%20gray?style=for-the-badge&logo=Node.js&logoColor=blue">
+  <img <<img alt="Static Badge" src="https://img.shields.io/badge/Lambda%20AWS%20-%20pink?style=for-the-badge&logo=AWS&logoColor=RED">
   
 </div>
