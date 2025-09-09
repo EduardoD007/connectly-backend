@@ -1,0 +1,66 @@
+{
+  "type": "object",
+  "properties": {
+    "username": { "type": "string" },
+    "image": {
+      "type": "object",
+      "properties": {
+        "png": { "type": "string" },
+        "webp": { "type": "string" }
+      }
+    },
+    "post": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type":"object",
+          "properties": {
+            "text": {"type": "string"},
+            "image": {"type": "string"}
+          }
+        },
+        "comments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "string" },
+              "content": { "type": "string" },
+              "createdAt": { "type": "string" },
+              "score": { "type": "integer" },
+              "user": {
+                "type": "object",
+                "properties": {
+                  "png": { "type": "string" },
+                  "webp": { "type": "string" }
+                }
+              },
+              "username": { "type": "string" },
+              "replies": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "id": { "type": "string" },
+                    "createdAt": { "type": "string" },
+                    "score": { "type": "integer" },
+                    "replyingTo": { "type": "string" },
+                    "image": {
+                      "type": "object",
+                      "properties": {
+                        "png": { "type": "string" },
+                        "webp": { "type": "string" }
+                      } 
+                    },
+                    "username": { "type": "string" }
+                  }
+                }
+             }
+           } 
+          } 
+        },
+      "likes": {"type":"integer"}
+      }    
+    } 
+  }
+}

@@ -1,0 +1,100 @@
+{
+  "unknown": {
+    "versionFramework": "4.18.0",
+    "command": [],
+    "options": {},
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  },
+  "C:\\Users\\Windows\\Desktop\\Mentor-Comentarios\\backend\\serverless.yml": {
+    "versionFramework": "4.18.0",
+    "servicePath": "C:\\Users\\Windows\\Desktop\\Mentor-Comentarios\\backend\\serverless.yml",
+    "serviceConfigFileName": "serverless.yml",
+    "service": {
+      "org": "eduardodias",
+      "app": "lista-comentarios",
+      "service": "comentarios",
+      "params": {
+        "default": {
+          "dbName": "mentor-comentarios"
+        },
+        "dev": {
+          "connectionString": "mongodb://lo"
+        }
+      },
+      "provider": {
+        "name": "aws",
+        "runtime": "nodejs20.x",
+        "plugins": [
+          "serverless-plugin-typescript"
+        ]
+      },
+      "functions": {
+        "saveMessage": {
+          "handler": "api/handler.saveComments",
+          "events": [
+            {
+              "http": {
+                "path": "/api/message",
+                "method": "post",
+                "request": {
+                  "schemas": {
+                    "application/json": "${file.(./schemas/saveMessages.json)}"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "getComments": {
+          "handler": "api/handler.getComments",
+          "events": [
+            {
+              "httpApi": "object",
+              "path": "/api"
+            }
+          ]
+        },
+        "hello": {
+          "handler": "handler.hello",
+          "events": [
+            {
+              "httpApi": {
+                "path": "/",
+                "method": "get"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "provider": {
+      "name": "aws",
+      "runtime": "nodejs20.x",
+      "plugins": [
+        "serverless-plugin-typescript"
+      ]
+    },
+    "error": {
+      "message": "spawn npm ENOENT",
+      "stack": "Error: spawn npm ENOENT\n    at notFoundError (file:///C:/Users/Windows/.serverless/releases/4.18.0/package/dist/sf-core.js:414:48146)\n    at verifyENOENT (file:///C:/Users/Windows/.serverless/releases/4.18.0/package/dist/sf-core.js:414:48645)\n    at cp.emit (file:///C:/Users/Windows/.serverless/releases/4.18.0/package/dist/sf-core.js:414:48452)\n    at ChildProcess._handle.onexit (node:internal/child_process:293:12)",
+      "code": "ENOENT"
+    },
+    "serviceRawFile": "# \"org\" ensures this Service is used with the correct Serverless Framework Access Key.\norg: eduardodias\n# \"app\" enables Serverless Framework Dashboard features and sharing them with other Services.\napp: lista-comentarios\n# \"service\" is the name of this project. This will also be added to your AWS resource names.\nservice: comentarios\n\nparams:\n  default:\n    dbName: mentor-comentarios\n  dev:\n    connectionString: mongodb://lo\n\nprovider:\n  name: aws\n  runtime: nodejs20.x\n  plugins:\n  - serverless-plugin-typescript\n  # Uncomment to easily set up a custom domain. Read the docs for more details:\n  # https://www.serverless.com/framework/docs/providers/aws/guide/domains\n  # domain: api.example.com\n\nfunctions:\n  saveMessage:\n    handler: api/handler.saveComments\n    events:\n      - http:\n          path: /api/message\n          method: post\n          request:\n            schemas:\n              application/json: ${file.(./schemas/saveMessages.json)}\n\n\n  getComments:\n    handler: api/handler.getComments\n    events:\n      - httpApi: object\n        path: /api\n\n\n  hello:\n    handler: handler.hello\n    events:\n      - httpApi:\n          path: /\n          method: get\n",
+    "command": [
+      "plugin",
+      "install"
+    ],
+    "options": {
+      "n": "serverless-offline@14.4.0"
+    },
+    "serviceProviderAwsCfStackId": null,
+    "serviceProviderAwsCfStackCreated": null,
+    "serviceProviderAwsCfStackUpdated": null,
+    "serviceProviderAwsCfStackStatus": null,
+    "serviceProviderAwsCfStackOutputs": null
+  }
+}

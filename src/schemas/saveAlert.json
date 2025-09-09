@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "_id": { "type": "string" },
+    "username": { "type": "string" },
+    "name": { "type": "string" },
+    "image": {
+      "type": "object",
+      "properties": {
+        "png": { "type": "string" },
+        "webp": { "type": "string" }
+      },
+      "required": ["png", "webp"]
+    },
+    "followAlert": { "type": "string" },
+    "message": { "type": "string" }
+  },
+  "required": ["_id", "username", "name", "image", "followAlert", "message"]
+}

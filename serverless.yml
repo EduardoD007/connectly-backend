@@ -1,0 +1,156 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: eduardodias
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: lista-comentarios
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: comentarios
+
+params:
+  default:
+    dbName: mentor-comentarios
+  dev:
+    connectionString:  mongodb://localhost:27017/${self:params.default.dbName}
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  environment:
+    MONGODB_CONNECTIONSTRING: ${self:params.dev.connectionString}
+    MONGODB_DB_NAME: ${self:params.default.dbName}
+
+
+functions:
+  saveMessage:
+    handler: src/api/handler.saveMessage
+    timeout: 30 # segundos
+    events:
+      - http:
+          path: /api/message
+          method: post
+          request:
+            schemas:
+              application/json: ${file(./src/schemas/saveMessages.json)}
+  
+  saveComments:
+    handler: src/api/handler.saveComments
+    timeout: 30 # segundos
+    events:
+      - http:
+          path: /api/comments
+          method: post
+          request:
+            schemas:
+              application/json: ${file(./src/schemas/getComments.json)}
+
+  saveReplies:
+    handler: src/api/handler.saveReplies
+    timeout: 30 # segundos
+    events:
+     - http:
+        path: /api/replies
+        method: post
+        request:
+          schemas:
+            application/json: ${file(./src/schemas/getComments.json)}
+            
+  getMessage:
+    handler: src/api/handler.getMessage
+    timeout: 30 # segundos
+    events:
+      - httpApi:
+          path: /api/message/{username}
+          method: get
+
+  deleteMessage:
+    handler: src/api/handler.deleteMessage
+    timeout: 30 # segundos
+    events:
+      - http:
+          path: /api/delete-message/{username}/{postId}
+          method: post
+  
+  deleteFeed:
+    handler: src/api/handler.deleteFeed
+    timeout: 30 # segundos
+    events:
+      - http:
+          path: /api/delete-feed/{userId}/{feedId}
+          method: post
+  
+  createUser:
+    handler: src/api/handler.saveUser
+    timeout: 30 # segundos
+    events:
+      - http:
+          path: /api/users
+          method: post
+          application/json: ${file(./src/schemas/saveUser.json)}
+
+  getUser:
+    handler: src/api/handler.getUser
+    timeout: 30 # segundos
+    events: 
+      - httpApi:
+         path: /api/users/{id}
+         method: get
+
+  getUsers:
+    handler: src/api/handler.getUsers
+    timeout: 300 # segundos
+    events: 
+      - httpApi:
+         path: /api/users
+         method: get
+
+  deleteUser:
+    handler: src/api/handler.deleteUser
+    timeout: 30 # segundos
+    events:
+      - http:
+          path: /api/users/{id}
+          method: post
+
+  saveFollowing:
+    handler: src/api/handler.saveFollowing
+    timeout: 30 # segundos
+    events:
+      - http: 
+          path: /api/users/following/{userId}/{followUsername}
+          method: post
+  
+  deleteFollowing:
+    handler: src/api/handler.deleteFollowing
+    timeout: 30 # segundos
+    events:
+      - http:
+          path: /api/users/deletefollowing/{userId}/{followUsername}
+          method: post
+  
+  saveAlert:
+    handler: src/api/handler.saveAlert
+    timeout: 30 # segundos
+    events:
+      - http: 
+          path: /api/users/alert/{userId}
+          method: post
+          application/json: ${file(./src/schemas/saveAlert.json)}
+  
+  deleteAlert:
+    handler: src/api/handler.deletAlertFollow
+    timeout: 30 # segundos
+    events:
+      - http: 
+          path: /api/users/deletealert/{userId}/{username}/{alertId}
+          method: post
+  
+  graphql:
+    handler: src/graphql/handler.handerGraphql
+    events:
+      - http:
+          path: /graphql
+          method: post
+
+
+plugins:
+  - serverless-offline
+  - serverless-plugin-typescript
